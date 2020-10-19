@@ -1,0 +1,19 @@
+plugins {
+	id 'java'
+}
+
+group 'fr.nkosmos'
+version '1.0.0'
+
+repositories {
+	jcenter()
+	mavenCentral()
+}
+
+dependencies {
+	implementation('com.google.code.gson:gson:2.8.1')
+
+	// https://projectlombok.org
+	compileOnly 'org.projectlombok:lombok:1.18.4'
+	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+}
