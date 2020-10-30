@@ -6,3 +6,4 @@ build
 .project
 *.priv.bat
 *.priv
+gradle.properties

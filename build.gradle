@@ -1,10 +1,11 @@
 plugins {
 	id 'java'
+	id 'maven'
 	id 'maven-publish'
 }
 
-group 'fr.nkosmos'
-version '1.0.0'
+group 'fr.nkosmos.re-sourcer'
+version '0.2.0'
 
 repositories {
 	jcenter()
@@ -23,6 +24,19 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from(components.java)
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "${url}/repository/maven-releases/") {
+                authentication(userName: username, password: password)
+            }
+            snapshotRepository(url: "${url}/repository/maven-snapshots") {
+                authentication(userName: username, password: password)
+            }
         }
     }
 }

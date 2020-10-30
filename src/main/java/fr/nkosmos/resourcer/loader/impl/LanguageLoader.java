@@ -13,9 +13,11 @@ import fr.nkosmos.resourcer.data.language.I18nListing;
 import fr.nkosmos.resourcer.data.language.Language;
 import fr.nkosmos.resourcer.data.texture.Texture;
 import fr.nkosmos.resourcer.loader.ILoader;
-import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-@Data
+@RequiredArgsConstructor
+@ToString
 public class LanguageLoader implements ILoader<Language[]> {
 
 	private final static String BASE_PATH = "/i18n/";
@@ -70,9 +72,9 @@ public class LanguageLoader implements ILoader<Language[]> {
 			
 			if(value instanceof Map) {
 				newData.putAll(flattenMap((Map<String, Object>)value, newKey));
-				continue;
+			} else {
+				newData.put(newKey, value);
 			}
-			newData.put(newKey, value);
 		}
 		return newData;
 	}

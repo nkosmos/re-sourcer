@@ -3,13 +3,10 @@ package fr.nkosmos.resourcer.data.language;
 import java.util.Map;
 
 import fr.nkosmos.resourcer.data.texture.Texture;
-
 import lombok.Builder;
 import lombok.Data;
 
-@Data
-@Builder
-public class Language {
+public @Data @Builder class Language {
 
 	/** The language's id */
 	private final String languageId;

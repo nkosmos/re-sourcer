@@ -8,8 +8,7 @@ import javax.imageio.ImageIO;
 
 import lombok.Data;
 
-@Data
-public class Texture {
+public @Data class Texture {
 
 	private final String path;
 	private final int width, height;

@@ -2,8 +2,7 @@ package fr.nkosmos.resourcer.data.language;
 
 import lombok.Data;
 
-@Data
-public class I18nListing {
+public @Data class I18nListing {
 	
 	/** The listing's project name */
 	private final String project;
