@@ -1,3 +1,3 @@
 @echo off
 
-gradlew upload
+gradlew publish

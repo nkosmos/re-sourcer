@@ -3,9 +3,15 @@ package fr.nkosmos.resourcer.loader.impl;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 
@@ -22,6 +28,8 @@ public class LanguageLoader implements ILoader<Language[]> {
 
 	private final static String BASE_PATH = "/i18n/";
 	private final static Gson gson = new Gson();
+	
+	private final static Logger logger = LogManager.getLogger("LanguageLoader");
 	
 	private final ClassLoader classLoader;
 	
@@ -61,6 +69,17 @@ public class LanguageLoader implements ILoader<Language[]> {
 		}
 		
 		Language[] languageArr = languages.values().toArray(new Language[languages.values().size()]);
+		
+		List<String> keys = new ArrayList<>();
+		Arrays.stream(languageArr).forEach(l -> {
+			l.getTranslationValues().keySet().stream().filter(s -> !keys.contains(s)).forEach(keys::add);
+		});
+		Arrays.stream(languageArr).forEach(l -> {
+			keys.stream().filter(k -> !l.getTranslationValues().containsKey(k)).forEach(k -> {
+				logger.warn("Missing translation key \"{}\" for language \"{}\"!", k, l.getLanguageId());
+			});
+		});
+		
 		return languageArr;
 	}
 	

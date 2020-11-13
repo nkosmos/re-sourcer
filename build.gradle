@@ -1,42 +1,40 @@
 plugins {
-	id 'java'
-	id 'maven'
-	id 'maven-publish'
+    id 'java'
+    id 'maven-publish'
 }
 
 group 'fr.nkosmos.re-sourcer'
-version '0.2.0'
+version '0.2.2'
 
 repositories {
-	jcenter()
-	mavenCentral()
+    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-	implementation('com.google.code.gson:gson:2.8.1')
+    implementation('com.google.code.gson:gson:2.8.1')
 
-	// https://projectlombok.org
-	compileOnly 'org.projectlombok:lombok:1.18.4'
-	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+	implementation('org.apache.logging.log4j:log4j-api:2.13.3')
+
+    // https://projectlombok.org
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from(components.java)
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/nkosmos/" + rootProject.name)
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
         }
     }
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "${url}/repository/maven-releases/") {
-                authentication(userName: username, password: password)
-            }
-            snapshotRepository(url: "${url}/repository/maven-snapshots") {
-                authentication(userName: username, password: password)
-            }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
