@@ -17,7 +17,6 @@ import com.google.gson.Gson;
 
 import fr.nkosmos.resourcer.data.language.I18nListing;
 import fr.nkosmos.resourcer.data.language.Language;
-import fr.nkosmos.resourcer.data.texture.Texture;
 import fr.nkosmos.resourcer.loader.ILoader;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -61,6 +60,8 @@ public class LanguageLoader implements ILoader<Language[]> {
 						String filePath = langPath + file;
 						translationValues.putAll(this.flattenMap(gson.fromJson(new InputStreamReader(classLoader.getResourceAsStream(filePath)), Map.class), ""));
 					}
+					
+					builder.translationValues(translationValues);
 					
 					// TODO: Proper flag textures
 					//builder.flagTexture(new Texture("/assets/resourcer/textures/icons/flags/" + langId + ".png"));
