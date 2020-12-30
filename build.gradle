@@ -1,10 +1,10 @@
 plugins {
     id 'java-library'
-    id 'maven-publish'
+    id 'maven'
 }
 
 group 'fr.nkosmos.re-sourcer'
-version '0.3.1'
+version '0.3.2'
 
 repositories {
     jcenter()
