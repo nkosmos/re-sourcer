@@ -62,7 +62,8 @@ public class LanguageLoader implements ILoader<Language[]> {
 						translationValues.putAll(this.flattenMap(gson.fromJson(new InputStreamReader(classLoader.getResourceAsStream(filePath)), Map.class), ""));
 					}
 					
-					builder.flagTexture(new Texture("/assets/resourcer/textures/icons/flags/" + langId + ".png"));
+					// TODO: Proper flag textures
+					//builder.flagTexture(new Texture("/assets/resourcer/textures/icons/flags/" + langId + ".png"));
 					
 					languages.put(langId, builder.build());
 				}
