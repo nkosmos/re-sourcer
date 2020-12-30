@@ -27,7 +27,7 @@ import lombok.ToString;
 @ToString
 public class LanguageLoader implements ILoader<Language[]> {
 
-	private final static String BASE_PATH = "/i18n/";
+	private final static String BASE_PATH = "i18n/";
 	private final static Gson gson = new Gson();
 	
 	private final static Logger logger = LogManager.getLogger("LanguageLoader");
