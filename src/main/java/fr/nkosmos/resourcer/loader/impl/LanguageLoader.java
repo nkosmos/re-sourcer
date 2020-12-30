@@ -22,6 +22,7 @@ import fr.nkosmos.resourcer.loader.ILoader;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+@SuppressWarnings("unchecked")
 @RequiredArgsConstructor
 @ToString
 public class LanguageLoader implements ILoader<Language[]> {
